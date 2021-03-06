@@ -58,6 +58,8 @@ class Page18 extends StatelessWidget {
 - 그래서 사용하는 것이 Builder Widget이고, 이를 사용하면 `Builder Widget`을 가리키게 된다.
   - `Scaffold.of(ctx)`와 같이 `context` 부분이 Builder의 `ctx`로 변경된 것을 알 수 있다.
 
+![18-scaffold-of-builder.png](img/18-scaffold-of-builder.png)
+
 ```Dart
 class Page18 extends StatelessWidget {
   @override
