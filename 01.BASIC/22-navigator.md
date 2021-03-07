@@ -144,7 +144,6 @@ class SecondPage extends StatelessWidget {
 
 ```Dart
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(MyApp());
 
