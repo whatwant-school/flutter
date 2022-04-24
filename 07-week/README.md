@@ -255,13 +255,38 @@ final _firestore = FirebaseFirestore.instance;
 
 
 
+## Order
+- 강의에 나오는 정렬 방법만으로는 제대로 되지 않는다.
+  - 다른 수강생이 추천해준 방법으로 Timestamp를 추가해서 해결할 수 있다
+- 하지만, client 기준으로 시간을 입력하기에ㅍ문제는 조금 있다
+```dart
+                  TextButton(
+                    onPressed: () {
+                      messageTextController.clear();
+                      Timestamp timeStamp = Timestamp.now();
+
+                      _firestore.collection('messages').add({
+                        'text': messageText,
+                        'sender': loggedInUser.email,
+                        'timeStamp': timeStamp,
+                      });
+```
+- 불러올 때 `timeStamp` 기준으로 정렬을 하면 된다.
+```dart
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: _firestore
+          .collection('messages')
+          .orderBy('timeStamp', descending: true)
+          .snapshots(),
+```
 
 
+## Firestore 보안
 
-
-
-
-
+### Links
+- https://firebase.google.com/docs/firestore/security/get-started?hl=ko&authuser=0
+  - Cloud Firestore 보안 규칙 시작하기
 
 
 
