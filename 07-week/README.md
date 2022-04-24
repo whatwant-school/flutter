@@ -219,6 +219,93 @@ final _firestore = FirebaseFirestore.instance;
 ```
 
 
+## StreamBuilder
+
+### change
+- before
+```dart
+              final messages = snapshot.data.documents;
+                List<Text> messageWidgets = [];
+                for (var message in messages!) {
+                  final messageText = message.data['text'];
+```
+- now
+```dart
+              final messages = snapshot.data?.docs;
+                List<Text> messageWidgets = [];
+                for (var message in messages!) {
+                  final messageText = message.get('text');
+```
+
+
+### Links
+- https://api.flutter.dev/flutter/widgets/StreamBuilder-class.html
+  - StreamBuilder class
+- https://api.flutter.dev/flutter/widgets/AsyncSnapshot-class.html
+  - AsyncSnapshot class
+
+
+
+## ListView
+
+
+### Links
+- https://api.flutter.dev/flutter/widgets/ListView-class.html
+  - ListView class
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+# Android Emulator Error
+- 안드로이드 에뮬레이터에서 실행을 하고자 하면 저장공간 부족 에러가 발생하곤 한다.
+```sh
+adb: failed to install /Users/whatwant/workspace/flash-chat-flutter-flearner/build/app/outputs/flutter-apk/app.apk: Failure [INSTALL_FAILED_INSUFFICIENT_STORAGE]
+Uninstalling old version...
+Error: ADB exited with exit code 1
+Performing Streamed Install
+
+adb: failed to install /Users/whatwant/workspace/flash-chat-flutter-flearner/build/app/outputs/flutter-apk/app.apk: Failure [INSTALL_FAILED_INSUFFICIENT_STORAGE]
+Error: Failed to install APK again.
+Error launching application on sdk gphone64 arm64.
+Exited (sigterm)
+```
+- 에뮬레이터의 기본 저장공간이 너무 작아서 그러니 늘려주자
+```sh
+❯ cd .android/avd/Nexus_6P_API_32.avd
+
+❯ pwd
+/Users/whatwant/.android/avd/Nexus_6P_API_32.avd
+
+❯ nano config.ini
+```
+```ini
+AvdId=Nexus_6P_API_32
+PlayStore.enabled=false
+abi.type=arm64-v8a
+avd.ini.displayname=Nexus 6P API 32
+avd.ini.encoding=UTF-8
+disk.dataPartition.size=800M
+...
+```
+- `disk.dataPartition.size=2048M` 원하는 만큼 잡아주고, 초기화 하자.
+- 당연히, 에뮬레이터 종료 상태에서 진행하자
+```sh
+❯ rm -rf ./userdata-qemu.img
+```
+- 이제 다시 에뮬레이터 실행하면 빵빵한 스토리지를 사용할 수 있다.
+- 대체 왜 AVD 에서 이런 설정 메뉴를 안만들어주는 것인지 모르겠다.
+
+
 # Android Error
 - Kotlin version
   - ./android/build.gradle
