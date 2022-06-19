@@ -13,3 +13,30 @@
   - https://github.com/londonappbrewery/Flutter-Course-Resources
 - Flunner 자료
   - https://github.com/Flearner-flutter/Flutter-Course-Resources
+
+---
+## The Complete 2021 Flutter Development Bootcamp with Dart
+
+### Section 01. Introduction to Cross-Platform Development with Flutter and Dart
+- 그냥 일반적인 소개 내용
+
+### Section 02. Setup and Installation
+- Windows 환경 및 macOS 환경 각각에 대한 친절한 설치 안내
+
+### Section 03. I Am Rich - How to Create Flutter Apps From Scratch
+- Flutter App 생성 방법
+  - VSCode 에서는 organization 미리 셋팅 해놓으면 편리함
+- Scaffold()
+  - appBar - title / backgroundColor / body
+- Image() - NetworkImage()
+- Center()
+- draw.io 사이트를 소개해줬는데, 아래 사이트로 redirect 됨
+  - https://app.diagrams.net/
+- image 등의 리소스 활용을 위한 pubspec.yaml 작성법
+- App Icon 만들고 등록하기
+  - https://appicon.co/
+  - 여러 유형에 알맞은 App Icon Generator Site
+- 
+
+
+
