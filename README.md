@@ -92,4 +92,160 @@ return Scaffold(
   ),
 );
 ```
+- height / width
+  - double.infinity : 화면의 가장 큰 값
+- margin (바깥)
+  - EdgeInsets.symmetric()
+    - vertical / horizontial
+  - EdgeInsets.fromLTRB()
+    - left / top / right / bottom
+  - EdgeInsets.only()
+    - choice one : left / top / right / bottom
+  - EdgeInsets.all()
+- padding (내부)
+  - margin과 동일
+
+### SafeArea()
+- 위 아래 위험한(?) 영역을 제외할 수 있음
+
+### Column() - Row()와 거의 동일
+- child가 아닌 **children**을 사용 (복수 widgets을 다루기 때문)
+- mainAxisSize
+  - MainAxisSize.min
+- verticalDirection
+  - verticalDirection.up : 밑에서부터 위로 쌓아 올라감
+  - verticalDirection.down
+- mainAxisAlignment
+  - MainAxisAlignment.start : 시작 위치부터 배열하고자 함
+  - MainAxisAlignment.end : 끝 위치부터 배열하고자 함
+    - verticalDirection.up과 다르게 쌓아올라가는 것은 아님. 위치만!
+  - MainAxisAlignment.center : 가운데 위치
+  - MainAxisAlignment.spaceEvenly : 간격을 넓직하게 띄어서 배치
+  - MainAxisAlignment.spaceBetween : 양쪽 정렬 (끝까지 띄어서 배치)
+- crossAxisAlignment
+  - CrossAxisAlignment.end : children에 있는 아이들 중 가장 오른쪽에 있는 아이를 기준으로 끝 정렬
+  - CrossAxisAlignment.stretch : 화면 크기를 기준으로 잡아늘이기
+    - chidren의 width값을 double.infinity로 주지 않아도 된다
+
+### SizedBox()
+- child 사이에 간격을 주고 싶을 때 사용
+- width / height
+- child : Divider() 같은 class 사용 가능
+
+### Divider()
+구분선 같은 용도로 사용
+- https://api.flutter.dev/flutter/material/Divider-class.html
+- color
+- 길이를 줄이기 위해서는 상위 위젯으로 설정 가능
+  - SizedBox()의 width값 설정으로 중간에 짧은 구분선 삽입
+
+```dart
+SizedBox(
+  height: 20.0,
+  width: 150.0,
+  child: Divider(
+    color: Colors.teal.shade100,
+  ),
+)
+```
+
+### CircleAvatar()
+원형 이미지를 출력하기 위한 아이
+- radius : 반지름
+- backgroundColor
+- backgroundImage
+  - AssetImage('images/xxx.jpg)
+  - pubspec.yaml에서 assets 지정해주는 것 잊지 말기
+
+### Text()
+- style
+  - TextStyle()
+    - fontSize
+    - color
+      - Colors.teal[100] = Colors.teal.shade100
+    - fontWeight
+      - FontWeight.bold
+    - fontFamily
+      - 밑에서 정의한 Custom Font의 family 명칭 사용
+    - letterSpacing
+
+### Custom Font
+- 상업적으로 이용가능한 폰트 제공
+  - https://fonts.google.com/
+- flutter에서 custom fonts 사용하는 방법
+  - https://docs.flutter.dev/cookbook/design/fonts
+- 다운로드 받은 ttf 파일을 임의의 디렉토리에 복사 (./fonts)
+- pubspec.yaml에서 assets와 같은 레벨로 **fonts** 정의
+
+```yaml
+  assets:
+  - images/
+  
+  fonts:
+  - family: xxx
+    fonts:
+    - asset: fonts/xxx-xxx.ttf
+```
+
+### Icon()
+- Icons 에서 사용할 수 있는 것들을 예쁘게 보여줌
+  - https://api.flutter.dev/flutter/material/Icons-class.html
+- 어울리는 색상 palletes 조합을 알려준다.
+  - https://www.materialpalette.com/
+  - More Awesome Design 링크를 못찾았는데, 직접 들어가면 Colors, Icons 관련 항목도 있다.
+    - https://www.materialpalette.com/colors
+    - https://www.materialpalette.com/icons
+- size
+- color
+
+### Card()
+Container와 비슷하지만, 그림자가 있고 모서리에 작은 곡선으로 처리
+- https://api.flutter.dev/flutter/material/Card-class.html
+- Container 대신 Card를 사용하면 되지만
+- padding 속성은 사용하지 못함
+  - Padding class로 묶어 줘야 함
+- 기본색은 white로 되어 있음
+
+### Padding()
+- child에게 padding 속성을 줌
+- 이걸 이용해서 Card()를 둘러쌀 수 있음
+  - 하지만, Card() 내부에 padding을 주는 것이 아니라 바깥에 적용
+
+```dart
+Padding(
+  padding: EdgeInsets.all(8.0),
+  child: const Card(
+    child: Text('Hello')
+  ),
+)
+```
+
+### ListTile()
+Card()의 child로 icon과 text를 처리할 때 유용한 class
+- https://api.flutter.dev/flutter/material/ListTile-class.html
+- leading : Icon() 같은 것 지정
+- title : Text() 같은 것 지정
+
+```dart
+Card(
+  color: Colors.white,
+  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+  child: ListTile(
+    leading: Icon(
+      Icons.email,
+      color: Colors.teal,
+    ),
+    title: Text(
+      'whatwant@gmail.com',
+      style: TextStyle(
+        fontSize: 20.0,
+        color: Colors.teal.shade900,
+        fontFamily: 'Source Sans Pro',
+      ),
+    ),
+  ),
+)
+```
+
+- 이렇게 하면, 적당한 padding이 적용된 위젯을 볼 수 있음
 
