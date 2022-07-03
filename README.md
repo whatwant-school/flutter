@@ -68,3 +68,18 @@
 - git/GitHub 간단한 설명
 - HotReload
 - `stless` 타이핑 하면 **StatelessWidget** 자동완성 구문이 나온다!!
+
+### Container()
+- Layout widgets : layout 관련된 여러 widget을 모아서 설명 (Container 포함)
+  - https://docs.flutter.dev/development/ui/widgets/layout
+- child가 없는 Container는 가능한 큰 크기를 갖으려고 한다.
+  - 아래 예제의 경우 child 없는 Container에 의해 전체가 하얗게 된다.
+ 
+```dart
+return Scaffold(
+  backgroudColor: Colors.teal,
+  body: Container(
+    color: Colors.white,
+  ),
+);
+```
