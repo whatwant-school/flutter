@@ -96,9 +96,9 @@ return Scaffold(
 );
 ```
 
-- height / width
+- height: / width:
   - double.infinity : 화면의 가장 큰 값
-- margin (바깥)
+- margin: (바깥)
   - EdgeInsets.symmetric()
     - vertical / horizontial
   - EdgeInsets.fromLTRB()
@@ -106,7 +106,7 @@ return Scaffold(
   - EdgeInsets.only()
     - choice one : left / top / right / bottom
   - EdgeInsets.all()
-- padding (내부)
+- padding: (내부)
   - margin과 동일
 
 
@@ -116,19 +116,19 @@ return Scaffold(
 
 ### Column() - Row()와 거의 동일
 - child가 아닌 **children**을 사용 (복수 widgets을 다루기 때문)
-- mainAxisSize
+- mainAxisSize:
   - MainAxisSize.min
-- verticalDirection
+- verticalDirection:
   - verticalDirection.up : 밑에서부터 위로 쌓아 올라감
   - verticalDirection.down
-- mainAxisAlignment
+- mainAxisAlignment:
   - MainAxisAlignment.start : 시작 위치부터 배열하고자 함
   - MainAxisAlignment.end : 끝 위치부터 배열하고자 함
     - verticalDirection.up과 다르게 쌓아올라가는 것은 아님. 위치만!
   - MainAxisAlignment.center : 가운데 위치
   - MainAxisAlignment.spaceEvenly : 간격을 넓직하게 띄어서 배치
   - MainAxisAlignment.spaceBetween : 양쪽 정렬 (끝까지 띄어서 배치)
-- crossAxisAlignment
+- crossAxisAlignment:
   - CrossAxisAlignment.end : children에 있는 아이들 중 가장 오른쪽에 있는 아이를 기준으로 끝 정렬
   - CrossAxisAlignment.stretch : 화면 크기를 기준으로 잡아늘이기
     - chidren의 width값을 double.infinity로 주지 않아도 된다
@@ -136,14 +136,15 @@ return Scaffold(
 
 ### SizedBox()
 - child 사이에 간격을 주고 싶을 때 사용
-- width / height
-- child : Divider() 같은 class 사용 가능
+- width: / height:
+- child:
+  - Divider() 같은 class 사용 가능
 
 
 ### Divider()
 구분선 같은 용도로 사용
 - https://api.flutter.dev/flutter/material/Divider-class.html
-- color
+- color:
 - 길이를 줄이기 위해서는 상위 위젯으로 설정 가능
   - SizedBox()의 width값 설정으로 중간에 짧은 구분선 삽입
 
@@ -159,24 +160,24 @@ SizedBox(
 
 ### CircleAvatar()
 원형 이미지를 출력하기 위한 아이
-- radius : 반지름
-- backgroundColor
-- backgroundImage
+- radius:
+- backgroundColor:
+- backgroundImage:
   - AssetImage('images/xxx.jpg)
   - pubspec.yaml에서 assets 지정해주는 것 잊지 말기
 
 
 ### Text()
-- style
+- style:
   - TextStyle()
-    - fontSize
-    - color
+    - fontSize:
+    - color:
       - Colors.teal[100] = Colors.teal.shade100
-    - fontWeight
+    - fontWeight:
       - FontWeight.bold
-    - fontFamily
+    - fontFamily:
       - 밑에서 정의한 Custom Font의 family 명칭 사용
-    - letterSpacing
+    - letterSpacing:
 
 
 ### Custom Font
@@ -206,8 +207,8 @@ SizedBox(
   - More Awesome Design 링크를 못찾았는데, 직접 들어가면 Colors, Icons 관련 항목도 있다.
     - https://www.materialpalette.com/colors
     - https://www.materialpalette.com/icons
-- size
-- color
+- size:
+- color:
 
 
 ### Card()
@@ -237,8 +238,10 @@ Padding(
 ### ListTile()
 Card()의 child로 icon과 text를 처리할 때 유용한 class
 - https://api.flutter.dev/flutter/material/ListTile-class.html
-- leading : Icon() 같은 것 지정
-- title : Text() 같은 것 지정
+- leading:
+  - Icon() 같은 것 지정
+- title:
+  - Text() 같은 것 지정
 
 ```dart
 Card(
@@ -269,10 +272,10 @@ Card(
 
 ### Image()
 - https://api.flutter.dev/flutter/widgets/Image-class.html
-- image
+- image:
   - AssetImage()
     - path of image
-- width / height
+- width: / height:
 
 ```dart
 Image(
@@ -289,9 +292,10 @@ Image.asset('images/dice1.png'),
 - Overflow : 화면의 경계를 벗어나게 되는 경우 노란색/검은색 바가 나오게 됨
 - Row, Column, Flex 에서 사용할 수 있음
 - https://api.flutter.dev/flutter/widgets/Expanded-class.html
-- child
+- child:
   - Image()와 같은 widget에 사용
-- flex : 다른 Expanded()와의 크기 비율 지정
+- flex:
+  - 다른 Expanded()와의 크기 비율 지정
 
 ```dart
 // 앞의 Expanded()가 2배의 크기로 출력
@@ -313,8 +317,121 @@ Image.asset('images/dice1.png'),
 ```
 
 ### Center()
-- child
+- child:
   - Row() : 위아래 기준으로 중앙 정렬
+
+
+### Buttons
+많이 바뀐 컨텐츠이므로 사이트 정보 확인 필요
+- https://docs.flutter.dev/development/ui/widgets/material#Buttons
+
+### FlatButton() → TextButton()
+- child:
+  - Image.asset() 같은 요소들
+- onPressed: () {}
+  - VoidCallback = no parameter, no return
+  - 
+
+### Dart Functions
+함수에 대해 기본적인 설명
+
+
+### Hot Reload
+**build** widget에 대해서만 적용이 됨
+
+```dart
+// 변수가 build 외부에서 정의되면 Hot Reload 적용이 안됨
+
+class DicePage extends StatelessWidget {
+  var leftDiceNumber = 5;
+
+  @override
+  Widget build(BuildContext context) {
+    ...
+      child Image.asset('images/dice$leftDiceNumber.png'),
+    ...
+  }
+}
+
+// 변수가 build 내부에서 정의되면 Hot Reload 적용됨
+
+class DicePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var leftDiceNumber = 5;
+
+    ...
+      child Image.asset('images/dice$leftDiceNumber.png'),
+    ...
+  }
+}
+```
+
+- 위의 예제의 경우 StatelessWidget을 사용하면 안되는 상황이긴 하다.
+
+
+### Dart Variables / Data Types
+변수 및 데이터 타입에 대한 기본적인 설명
+- Dart 문법을 실습해볼 수 있는 사이트
+  - https://dartpad.dev
+
+```dart
+void main() {
+  var myName = 'whatwant';
+
+  print (myName);
+}
+```
+
+- Primitive Types
+  - String / int / double / bool
+
+
+
+### StatefulWidget
+2개의 class로 구성
+
+```dart
+class [Name] extends StatefulWidget {
+  @override
+  _[Name]State createState() => _[Name]State();
+}
+
+class _[Name]State extends State<[Name]> {
+  return Container();
+}
+```
+
+### setState()
+**build() {}** 구문을 다시 실행하길 원할 때 사용
+
+```dart
+TextButton (
+  onPressed: () {
+    setState(() {
+      leftDiceNumber = 5;
+    })
+  },
+  child: Image.asset('images/dice$leftDiceNumber.png'),
+)
+```
+
+
+### Random()
+- https://api.flutter.dev/flutter/dart-math/Random-class.html
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
