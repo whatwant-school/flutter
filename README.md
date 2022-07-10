@@ -15,17 +15,17 @@
   - https://github.com/Flearner-flutter/Flutter-Course-Resources
 
 ---
-## The Complete 2021 Flutter Development Bootcamp with Dart
+# The Complete 2021 Flutter Development Bootcamp with Dart
 
-### 01. Introduction to Cross-Platform Development with Flutter and Dart (39m)
+## 01. Introduction to Cross-Platform Development with Flutter and Dart (39m)
 - 그냥 일반적인 소개 내용
 
 
-### 02. Setup and Installation (78m)
+## 02. Setup and Installation (78m)
 - Windows 환경 및 macOS 환경 각각에 대한 친절한 설치 안내
 
 
-### 03. I Am Rich - How to Create Flutter Apps From Scratch (58m)
+## 03. I Am Rich - How to Create Flutter Apps From Scratch (58m)
 - Flutter App 생성 방법
   - VSCode 에서는 organization 미리 셋팅 해놓으면 편리함
 - Scaffold()
@@ -48,11 +48,11 @@
     - 일괄 변경도 가능
 
 
-### 04. Running Your App on a Physical Device (26m)
+## 04. Running Your App on a Physical Device (26m)
 - 실제 Android/iPhone 기기에서 실행하는 방법
 
 
-### 05. I Am Poor - App Challenge (8m)
+## 05. I Am Poor - App Challenge (8m)
 - 직접 만들기 숙제
 - icon 자료 창고
   - https://icons8.com/
@@ -69,21 +69,24 @@
 - HotReload
 - `stless` 타이핑 하면 **StatelessWidget** 자동완성 구문이 나온다!!
 
+
 ### Container()
 - Layout widgets : layout 관련된 여러 widget을 모아서 설명 (Container 포함)
   - https://docs.flutter.dev/development/ui/widgets/layout
 - child가 없는 Container는 가능한 큰 크기를 갖는다.
-- 아래 예제의 경우 child 없는 Container에 의해 전체가 하얗게 된다. 
+
 ```dart
+// 아래 예제의 경우 child 없는 Container에 의해 전체가 하얗게 된다.
+
 return Scaffold(
   backgroudColor: Colors.teal,
   body: Container(
     color: Colors.white,
   ),
 );
-```
-- 다음과 같이 child를 갖는 경우 child 크기로 줄어든다.
-```dart
+
+// 다음과 같이 child를 갖는 경우 child 크기로 줄어든다.
+
 return Scaffold(
   backgroudColor: Colors.teal,
   body: Container(
@@ -92,6 +95,7 @@ return Scaffold(
   ),
 );
 ```
+
 - height / width
   - double.infinity : 화면의 가장 큰 값
 - margin (바깥)
@@ -105,8 +109,10 @@ return Scaffold(
 - padding (내부)
   - margin과 동일
 
+
 ### SafeArea()
 - 위 아래 위험한(?) 영역을 제외할 수 있음
+
 
 ### Column() - Row()와 거의 동일
 - child가 아닌 **children**을 사용 (복수 widgets을 다루기 때문)
@@ -127,10 +133,12 @@ return Scaffold(
   - CrossAxisAlignment.stretch : 화면 크기를 기준으로 잡아늘이기
     - chidren의 width값을 double.infinity로 주지 않아도 된다
 
+
 ### SizedBox()
 - child 사이에 간격을 주고 싶을 때 사용
 - width / height
 - child : Divider() 같은 class 사용 가능
+
 
 ### Divider()
 구분선 같은 용도로 사용
@@ -157,6 +165,7 @@ SizedBox(
   - AssetImage('images/xxx.jpg)
   - pubspec.yaml에서 assets 지정해주는 것 잊지 말기
 
+
 ### Text()
 - style
   - TextStyle()
@@ -168,6 +177,7 @@ SizedBox(
     - fontFamily
       - 밑에서 정의한 Custom Font의 family 명칭 사용
     - letterSpacing
+
 
 ### Custom Font
 - 상업적으로 이용가능한 폰트 제공
@@ -187,6 +197,7 @@ SizedBox(
     - asset: fonts/xxx-xxx.ttf
 ```
 
+
 ### Icon()
 - Icons 에서 사용할 수 있는 것들을 예쁘게 보여줌
   - https://api.flutter.dev/flutter/material/Icons-class.html
@@ -198,6 +209,7 @@ SizedBox(
 - size
 - color
 
+
 ### Card()
 Container와 비슷하지만, 그림자가 있고 모서리에 작은 곡선으로 처리
 - https://api.flutter.dev/flutter/material/Card-class.html
@@ -205,6 +217,7 @@ Container와 비슷하지만, 그림자가 있고 모서리에 작은 곡선으�
 - padding 속성은 사용하지 못함
   - Padding class로 묶어 줘야 함
 - 기본색은 white로 되어 있음
+
 
 ### Padding()
 - child에게 padding 속성을 줌
@@ -219,6 +232,7 @@ Padding(
   ),
 )
 ```
+
 
 ### ListTile()
 Card()의 child로 icon과 text를 처리할 때 유용한 class
@@ -248,4 +262,64 @@ Card(
 ```
 
 - 이렇게 하면, 적당한 padding이 적용된 위젯을 볼 수 있음
+
+
+## 07. Dicee - Building Apps with State (103m)
+주사위 굴리기 앱 만들기
+
+### Image()
+- https://api.flutter.dev/flutter/widgets/Image-class.html
+- image
+  - AssetImage()
+    - path of image
+- width / height
+
+```dart
+Image(
+  image: AssetImage('images/dice1.png'),
+),
+
+// 위 코드와 아래 코드는 같은 내용
+
+Image.asset('images/dice1.png'),
+```
+
+
+### Expanded()
+- Overflow : 화면의 경계를 벗어나게 되는 경우 노란색/검은색 바가 나오게 됨
+- Row, Column, Flex 에서 사용할 수 있음
+- https://api.flutter.dev/flutter/widgets/Expanded-class.html
+- child
+  - Image()와 같은 widget에 사용
+- flex : 다른 Expanded()와의 크기 비율 지정
+
+```dart
+// 앞의 Expanded()가 2배의 크기로 출력
+
+<Widget> [
+  Expanded(
+    flex: 2,
+    child: Image(
+      image: AssetImage('images/dice1.png'),
+    ),
+  ),
+  Expanded(
+    flex: 1,
+    child: Image(
+      image: AssetImage('images/dice1.png'),
+    ),
+  ),
+],
+```
+
+### Center()
+- child
+  - Row() : 위아래 기준으로 중앙 정렬
+
+
+
+
+
+
+
 
