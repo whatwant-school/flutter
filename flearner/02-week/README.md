@@ -40,7 +40,7 @@
 
 
 ### migration
-- 강의에서 'FlatButton'을 사용하지만, deplrecated
+- 강의에서 'FlatButton'을 사용하지만, deprecated
   - 'TextButton'으로 대체 가능
 
 
